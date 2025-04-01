@@ -1,4 +1,4 @@
-EmpID ,OrderNum,OrderDate,OrderType,Quantity, Price , Discount , Order Total 
+EmpID,OrderNum,OrderDate,OrderType,Quantity,Price,Discount,OrderTotal
 900015476,1100948,9/3/2017,Retail,1, $44.95 , 0 , $44.95 
 900015476,1101096,9/24/2017,Wholesale,10, $4.99 , $1.00 , $48.90 
 900015476,1101138,10/1/2017,Wholesale,4, $250.00 , $50.00 , $950.00 
