@@ -35,6 +35,8 @@ from red_30_tech_us_sales_cleaned
 where OrderType = 'Retail'
   and OrderDate between '2018-08-01' and '2018-08-31'
 
+--06_04
+
 select EmpID
   , OrderType
   , OrderDate
@@ -54,3 +56,19 @@ from red_30_tech_us_sales_cleaned
 
 select count(distinct EmpID)
 from red_30_tech_us_sales_associates
+
+--06_05
+PRAGMA table_info(red_30_tech_us_sales);
+
+select cast(OrderDate as date) 
+from red_30_tech_us_sales 
+
+select EmpID
+  , julianday(max(OrderDate)) - julianday(min(OrderDate)) as MinMaxDateDiffDays
+from red_30_tech_us_sales_cleaned 
+group by EmpID 
+
+select strftime('%Y-%m-01', OrderDate) as FirstOfMonth
+  , sum(OrderTotal) as OrderTotalSum 
+from red_30_tech_us_sales_cleaned
+group by FirstofMonth
