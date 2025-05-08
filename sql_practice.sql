@@ -72,3 +72,24 @@ select strftime('%Y-%m-01', OrderDate) as FirstOfMonth
   , sum(OrderTotal) as OrderTotalSum 
 from red_30_tech_us_sales_cleaned
 group by FirstofMonth
+
+--06_06
+select * 
+from red_30_tech_us_sales_cleaned as sc
+inner join red_30_tech_us_customer_info as ci
+  on sc.OrderNum = ci.OrderNum
+
+select ci.OrderNum
+  , ci.CustName 
+  , ci.CustomerType 
+  , ci.CustState
+  , sr.State
+  , sr.Region
+  , sc.state_name 
+  , sc.state_code 
+  , sc.state_timezone 
+from red_30_tech_us_customer_info as ci
+inner join red_30_tech_us_sales_regions as sr 
+  on ci.CustState = sr.State
+inner join us_state_codes as sc 
+  on ci.CustState = sc.state_name   
