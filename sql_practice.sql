@@ -124,3 +124,21 @@ left join red_30_tech_us_customer_info as ci
   on sc.OrderNum = ci.OrderNum 
 left join red_30_tech_us_sales_regions as sr 
   on ci.CustState = sr.State
+
+--06_08
+select * 
+from red_30_tech_us_product_info as pi 
+right join red_30_tech_us_sales_cleaned as sc 
+  on sc.OrderNum = pi.OrderNum 
+
+select * 
+from us_state_codes as usc 
+cross join red_30_tech_us_sales_regions as sr
+
+select sr.State
+  , sr.Region 
+  , usc.state_name
+  , usc.state_code
+from red_30_tech_us_sales_regions as sr 
+full join us_state_codes as usc 
+  on sr.State = usc.state_name
