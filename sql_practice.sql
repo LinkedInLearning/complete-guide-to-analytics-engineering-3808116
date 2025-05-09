@@ -93,3 +93,34 @@ inner join red_30_tech_us_sales_regions as sr
   on ci.CustState = sr.State
 inner join us_state_codes as sc 
   on ci.CustState = sc.state_name   
+
+--06_07
+select * 
+from red_30_tech_us_sales_cleaned as sc
+left join red_30_tech_us_product_info as pi 
+  on sc.OrderNum = pi.OrderNum 
+
+select sr.State
+  , sr.Region 
+  , usc.state_name
+  , usc.state_code
+from red_30_tech_us_sales_regions as sr 
+left join us_state_codes as usc 
+  on sr.State = usc.state_name
+
+select sr.State
+  , sr.Region 
+  , usc.state_name
+  , usc.state_code
+from us_state_codes as usc 
+left join red_30_tech_us_sales_regions as sr 
+  on usc.state_name = sr.State 
+
+select * 
+from red_30_tech_us_sales_cleaned as sc
+left join red_30_tech_us_sales_associates as sa 
+  on sc.EmpID = sa.EmpID 
+left join red_30_tech_us_customer_info as ci 
+  on sc.OrderNum = ci.OrderNum 
+left join red_30_tech_us_sales_regions as sr 
+  on ci.CustState = sr.State
