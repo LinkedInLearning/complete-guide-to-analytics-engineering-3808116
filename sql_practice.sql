@@ -142,3 +142,45 @@ select sr.State
 from red_30_tech_us_sales_regions as sr 
 full join us_state_codes as usc 
   on sr.State = usc.state_name
+
+--06_09
+with dupe_identifier as (
+select *
+  , row_number() over(partition by OrderNum order by OrderNum) as row_nbr 
+from red_30_tech_us_sales
+)
+
+select * 
+from dupe_identifier
+where row_nbr = 2
+
+select * 
+from red_30_tech_us_sales
+where OrderNum in (1101902,	1102922, 1105038) 
+order by OrderNum 
+
+with dupe_identifier as (
+select *
+  , row_number() over(partition by OrderNum, OrderDate, EmpID order by OrderNum) as row_nbr 
+from red_30_tech_us_sales
+)
+
+select * 
+from dupe_identifier
+where row_nbr = 2
+
+
+with order_product_discounts as (
+select sc.EmpID
+  , pi.ProdCategory
+  , sum(Discount) as DiscountSum
+from red_30_tech_us_sales_cleaned as sc
+left join red_30_tech_us_product_info as pi
+  on sc.OrderNum = pi.OrderNum 
+group by sc.EmpID
+  , pi.ProdCategory
+) 
+
+select * 
+  , rank() over(partition by ProdCategory order by DiscountSum desc) as DiscountedRank
+from order_product_discounts
