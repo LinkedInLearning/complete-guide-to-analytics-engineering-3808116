@@ -1,0 +1,11 @@
+red_30_project:
+  target: dev
+  outputs:
+    dev:
+      type: sqlite
+      threads: 1
+      database: "database"
+      schema: "main"
+      schemas_and_paths:
+        main: "/workspaces/complete-guide-to-analytics-engineering-3808116/database.db"
+
