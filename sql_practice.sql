@@ -184,3 +184,19 @@ group by sc.EmpID
 select * 
   , rank() over(partition by ProdCategory order by DiscountSum desc) as DiscountedRank
 from order_product_discounts
+
+--08_03
+select * 
+from us_sales_statistics_by_associate 
+
+select * 
+from red_30_tech_us_sales_cleaned
+
+select * 
+from red_30_tech_us_sales_associates
+
+select * 
+from red_30_tech_us_customer_info
+
+select * 
+from red_30_tech_us_product_info
